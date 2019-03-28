@@ -18,7 +18,6 @@ public class BrandController {
     private BrandService brandService;
     @GetMapping("/findAll")
     public List<Brand> findAll(){
-        System.out.println("我的吗啊");
         System.out.println(brandService);
         return brandService.findAll();
     }
