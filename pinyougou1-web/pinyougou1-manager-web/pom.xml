@@ -1,17 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">  
-  <parent> 
-    <artifactId>pinyougou1-web</artifactId>  
-    <groupId>com.pinyougou1</groupId>  
-    <version>1.0-SNAPSHOT</version> 
-  </parent>  
-  <modelVersion>4.0.0</modelVersion>  
-  <artifactId>pinyougou1-manager-web</artifactId>
-  <packaging>war</packaging>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>pinyougou1-web</artifactId>
+        <groupId>com.pinyougou1</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>pinyougou1-manager-web</artifactId>
+    <packaging>war</packaging>
 
-  <properties>
-    <!-- 覆盖父工程中的port属性 -->
-    <port>9101</port>
-  </properties>
+    <properties>
+        <!-- 覆盖父工程中的port属性 -->
+        <port>9101</port>
+    </properties>
+
+    <dependencies>
+        <!-- dubbo -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
+        <!-- zookeeper分布式协调服务 -->
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+        </dependency>
+        <!-- zkclient(zookeeper客户端) -->
+        <dependency>
+            <groupId>com.github.sgroschupf</groupId>
+            <artifactId>zkclient</artifactId>
+        </dependency>
+    </dependencies>
 </project>
