@@ -1,20 +1,20 @@
 package com.pinyougou1.service;
 
-import com.pinyougou1.pojo.Brand;
+import com.pinyougou1.pojo.Goods;
 import java.util.List;
 import java.io.Serializable;
 /**
- * BrandService 服务接口
+ * GoodsService 服务接口
  * @date 2019-03-28 18:33:00
  * @version 1.0
  */
-public interface BrandService {
+public interface GoodsService {
 
 	/** 添加方法 */
-	void save(Brand brand);
+	void save(Goods goods);
 
 	/** 修改方法 */
-	void update(Brand brand);
+	void update(Goods goods);
 
 	/** 根据主键id删除 */
 	void delete(Serializable id);
@@ -23,12 +23,12 @@ public interface BrandService {
 	void deleteAll(Serializable[] ids);
 
 	/** 根据主键id查询 */
-	Brand findOne(Serializable id);
+	Goods findOne(Serializable id);
 
 	/** 查询全部 */
-	List<Brand> findAll();
+	List<Goods> findAll();
 
 	/** 多条件分页查询 */
-	List<Brand> findByPage(Brand brand, int page, int rows);
+	List<Goods> findByPage(Goods goods, int page, int rows);
 
 }
