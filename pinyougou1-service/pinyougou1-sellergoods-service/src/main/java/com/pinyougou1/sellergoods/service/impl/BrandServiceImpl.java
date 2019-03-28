@@ -20,12 +20,12 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public void save(Brand brand) {
-
+        brandMapper.insertSelective(brand);
     }
 
     @Override
     public void update(Brand brand) {
-
+        brandMapper.updateByPrimaryKeySelective(brand);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public List<Brand> findAll() {
-        PageInfo<Brand> pageInfo =
+      /*  PageInfo<Brand> pageInfo =
                 PageHelper.startPage(2,10).
                         doSelectPageInfo(new ISelect() {
                             @Override
@@ -55,7 +55,8 @@ public class BrandServiceImpl implements BrandService {
                         });
         System.out.println("总记录数:"+pageInfo.getTotal());
         System.out.println("总页数:"+pageInfo.getPages());
-        return pageInfo.getList();
+        return pageInfo.getList();*/
+        return brandMapper.selectAll();
     }
 
     @Override

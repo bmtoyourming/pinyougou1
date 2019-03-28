@@ -5,9 +5,7 @@ import com.pinyougou1.pojo.Brand;
 import com.pinyougou1.service.BrandService;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,7 +16,27 @@ public class BrandController {
     private BrandService brandService;
     @GetMapping("/findAll")
     public List<Brand> findAll(){
-        System.out.println(brandService);
         return brandService.findAll();
+    }
+
+    @PostMapping("/save")
+    public boolean addBrand(@RequestBody Brand brand){
+        try {
+            brandService.save(brand);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    @PostMapping("/update")
+    public boolean updateBrand(@RequestBody Brand brand){
+        try {
+            brandService.update(brand);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }

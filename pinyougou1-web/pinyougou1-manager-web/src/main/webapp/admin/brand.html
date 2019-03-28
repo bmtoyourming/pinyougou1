@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress ALL -->
 <html>
 <head>
     <meta charset="utf-8">
@@ -9,9 +10,10 @@
     <link rel="stylesheet" href="/css/style.css"/>
 	<script src="/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/plugins/angularjs/angular.min.js"></script>
     
 </head>
-<body class="hold-transition skin-red sidebar-mini">
+<body class="hold-transition skin-red sidebar-mini" ng-app="brand" ng-controller="getBrand" ng-init="findAll()">
 	<!-- .box-body -->
 	<div class="box-header with-border">
 		<h3 class="box-title">品牌管理</h3>
@@ -24,7 +26,7 @@
 			<div class="pull-left">
 				<div class="form-group form-inline">
 					<div class="btn-group">
-						<button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
+						<button type="button" class="btn btn-default" ng-click="entity={}" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
 						<button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>           
 						<button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
 					</div>
@@ -63,33 +65,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
+					<tr ng-repeat="entity in dataList">
 						<td><input  type="checkbox" ></td>			                              
-						<td>1</td>
-						<td>联想</td>									     
-						<td>L</td>		                                 
+						<td>{{entity.id}}</td>
+						<td>{{entity.name}}</td>
+						<td>{{entity.firstChar}}</td>
 						<td class="text-center">                                           
-							<button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal"  >修改</button>                                           
+							<button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" ng-click="show(entity);" >修改</button>
 						</td>
 					</tr>
-					<tr>
-					    <td><input  type="checkbox"></td>			                              
-					    <td>2</td>
-					    <td>华为</td>									     
-					    <td>H</td>		                                 
-					    <td class="text-center">                                           
-						   <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal"  >修改</button>                                           
-					    </td>
-				    </tr>
-					<tr>
-						<td><input  type="checkbox"></td>			                              
-						<td>3</td>
-						<td>三星</td>									     
-						<td>S</td>		                                 
-						<td class="text-center">                                           
-							<button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal"  >修改</button>                                           
-						</td>
-					</tr>
+
 				</tbody>
 			 </table>
 			 <!--数据列表/-->                        
@@ -110,16 +95,20 @@
 				<table class="table table-bordered table-striped"  width="800px">
 					<tr>
 						<td>品牌名称</td>
-						<td><input  class="form-control" placeholder="品牌名称" >  </td>
+						<td><input  class="form-control"
+									ng-model="entity.name"
+									placeholder="品牌名称" >  </td>
 					</tr>		      	
 					<tr>
 						<td>首字母</td>
-						<td><input  class="form-control" placeholder="首字母">  </td>
+						<td><input  class="form-control"
+									ng-model="entity.firstChar"
+									placeholder="首字母">  </td>
 					</tr>		      	
 				 </table>				
 			</div>
 			<div class="modal-footer">						
-				<button class="btn btn-success" data-dismiss="modal" aria-hidden="true">保存</button>
+				<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="saveOrUpdate()">保存</button>
 				<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
 			</div>
 		  </div>
@@ -127,3 +116,45 @@
 	</div>
 </body>
 </html>
+<script type="text/javascript">
+	// 定义一个模块
+	var app = angular.module("brand",[]);
+	// 添加控制器
+	app.controller("getBrand",function ($scope,$http) {
+	    //这个$scope就是为了绑定调用请求数据
+		$scope.findAll = function () {
+			// 发送异步请求
+			$http.get("/brand/findAll").then(function(response) {
+                // alert(response.stringify())
+                //这个$scope就是为了绑定响应数据
+                $scope.dataList = response.data;
+            }),function (resp) {
+                alert("请求失败")
+            }
+        };
+		$scope.saveOrUpdate = function () {
+			var url = "save";
+			if($scope.entity.id){
+			    //说明那时候点的是修改
+			    url = "update";
+			}
+			$http.post("/brand/"+url,$scope.entity).then(function (resp) {
+				if (resp.data){
+				    $scope.findAll();
+				}else{
+				    alert("添加失败")
+				}
+            })
+        };
+		$scope.show = function (entity) {
+
+			//当点击修改的时候,数据显示当前点击修改的内容
+			//把json字符串转为对象,因为那两个框本身就是用了绑定对象了
+			// $scope.entity = JSON.parse(JSOn.stringify(entity))
+            // 把entity转化成json字符串
+            var jsonStr = JSON.stringify(entity);
+            // 把json字符串转化成json对象
+            $scope.entity = JSON.parse(jsonStr);
+        }
+    })
+</script>
