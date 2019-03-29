@@ -1,10 +1,12 @@
 package com.pinyougou1.manager.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.pinyougou1.common.pojo.PageResult;
 import com.pinyougou1.pojo.Brand;
 import com.pinyougou1.service.BrandService;
 
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +17,15 @@ public class BrandController {
     @Reference(timeout = 10000)
     private BrandService brandService;
     @GetMapping("/findAll")
-    public List<Brand> findAll(){
-        return brandService.findAll();
+    public PageResult findAll(Brand brand, int pageNum, int pageSize){
+         try{
+             if (StringUtils.isNoneBlank(brand.getName())){
+                 brand.setName(new String(brand.getName().getBytes("ISO8859-1"), "UTF-8"));
+             }
+         }catch (Exception ex){
+             ex.printStackTrace();
+         }
+        return brandService.findByPage(brand,pageNum,pageSize);
     }
 
     @PostMapping("/save")

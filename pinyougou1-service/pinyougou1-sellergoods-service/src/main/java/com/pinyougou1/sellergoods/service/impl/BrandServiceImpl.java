@@ -4,11 +4,13 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.ISelect;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.pinyougou1.common.pojo.PageResult;
 import com.pinyougou1.mapper.BrandMapper;
 import com.pinyougou1.pojo.Brand;
 import com.pinyougou1.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import java.io.Serializable;
 import java.util.List;
@@ -58,13 +60,14 @@ public class BrandServiceImpl implements BrandService {
      * @return
      */
     @Override
-    public List<Brand> findByPage(Brand brand, int page, int rows) {
+    public PageResult findByPage(Brand brand, int page, int rows) {
         PageInfo<Brand> brandList = PageHelper.startPage(page, rows).doSelectPageInfo(new ISelect() {
             @Override
             public void doSelect() {
                 brandMapper.findBrandByPages(brand);
             }
         });
-        return brandList.getList();
+//        return brandList.getList();
+        return new PageResult(brandList.getTotal(),brandList.getList());
     }
 }

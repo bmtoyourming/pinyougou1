@@ -1,3 +1,4 @@
+import com.pinyougou1.common.pojo.PageResult;
 import com.pinyougou1.pojo.Brand;
 import com.pinyougou1.service.BrandService;
 import org.junit.Test;
@@ -23,7 +24,8 @@ public class Demo {
     public void test02(){
         Brand brand = new Brand();
         brand.setName("联");
-        List<Brand> byPage = brandService.findByPage(brand, 1, 5);
+//        List<Brand> byPage = brandService.findByPage(brand, 1, 5);
+        PageResult byPage = brandService.findByPage(brand, 1, 5);
         System.out.println(byPage);
     }
 }

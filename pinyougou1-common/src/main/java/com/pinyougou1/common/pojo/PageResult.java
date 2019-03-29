@@ -1,16 +1,24 @@
 package com.pinyougou1.common.pojo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PageResult {
-    //总记录数
+/**
+ * 分页实体类(封装分页数据)
+ *
+ * @author lee.siu.wah
+ * @version 1.0
+ * <p>File Created at 2019-03-29<p>
+ */
+public class PageResult implements Serializable{
+
+    // 总记录数
     private long total;
-    //分页数据
+    // 分页数据
     private List<?> rows;
+    public PageResult(){
 
-    public PageResult() {
     }
-
     public PageResult(long total, List<?> rows) {
         this.total = total;
         this.rows = rows;

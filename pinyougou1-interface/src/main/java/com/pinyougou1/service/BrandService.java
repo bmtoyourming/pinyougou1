@@ -1,5 +1,6 @@
 package com.pinyougou1.service;
 
+import com.pinyougou1.common.pojo.PageResult;
 import com.pinyougou1.pojo.Brand;
 import java.util.List;
 import java.io.Serializable;
@@ -29,6 +30,6 @@ public interface BrandService {
 	List<Brand> findAll();
 
 	/** 多条件分页查询 */
-	List<Brand> findByPage(Brand brand, int page, int rows);
+	PageResult findByPage(Brand brand, int page, int rows);
 
 }
