@@ -11,9 +11,13 @@
 	<script src="/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/plugins/angularjs/angular.min.js"></script>
+	<!-- 分页模块开始 -->
+	<link rel="stylesheet" href="/plugins/angularjs/pagination.css"/>
+	<script src="/plugins/angularjs/pagination.js"></script>
+	<!-- 分页模块结束 -->
     
 </head>
-<body class="hold-transition skin-red sidebar-mini" ng-app="brand" ng-controller="getBrand" ng-init="findAll()">
+<body class="hold-transition skin-red sidebar-mini" ng-app="brand" ng-controller="getBrand" ng-init="findAllByPage()">
 	<!-- .box-body -->
 	<div class="box-header with-border">
 		<h3 class="box-title">品牌管理</h3>
@@ -74,9 +78,10 @@
 							<button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" ng-click="show(entity);" >修改</button>
 						</td>
 					</tr>
-
 				</tbody>
 			 </table>
+			<!--用于分页-->
+			<tm-pagination conf="paginationConf"/>
 			 <!--数据列表/-->                        
 		</div>
 		<!-- 数据表格 /-->
@@ -118,20 +123,16 @@
 </html>
 <script type="text/javascript">
 	// 定义一个模块
-	var app = angular.module("brand",[]);
+	var app = angular.module("brand",['pagination']);
 	// 添加控制器
 	app.controller("getBrand",function ($scope,$http) {
-	    //这个$scope就是为了绑定调用请求数据
-		$scope.findAll = function () {
-			// 发送异步请求
-			$http.get("/brand/findAll").then(function(response) {
-                // alert(response.stringify())
-                //这个$scope就是为了绑定响应数据
-                $scope.dataList = response.data;
-            }),function (resp) {
-                alert("请求失败")
-            }
-        };
+	 	$scope.findAllByPage = function () {
+            currentPage: 1, // 当前页码
+                totalItems: 0,  // 总记录数
+                itemsPerPage: 10, // 每页显示的记录数
+                perPageOptions: [10, 20, 30], // 页码下拉列表框
+        }
+
 		$scope.saveOrUpdate = function () {
 			var url = "save";
 			if($scope.entity.id){

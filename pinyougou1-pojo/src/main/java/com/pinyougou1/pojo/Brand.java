@@ -43,4 +43,13 @@ public class Brand implements Serializable{
     public void setFirstChar(String firstChar) {
         this.firstChar = firstChar == null ? null : firstChar.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Brand{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", firstChar='" + firstChar + '\'' +
+                '}';
+    }
 }

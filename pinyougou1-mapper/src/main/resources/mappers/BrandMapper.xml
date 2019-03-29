@@ -4,5 +4,15 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.pinyougou1.mapper.BrandMapper">
-
+	<select id="findBrandByPages"
+	        resultType="com.pinyougou1.pojo.Brand"
+	       >
+		select * from tb_brand where 1=1
+		<if test=" name != null and name != ''">
+			and name like concat ('%',#{name},'%')
+        </if>
+		<if test=" firstChar != null and firstChar != ''">
+			and first_char like concat ('%',#{firstChar},'%')
+		</if>
+	</select>
 </mapper>

@@ -45,22 +45,26 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public List<Brand> findAll() {
-      /*  PageInfo<Brand> pageInfo =
-                PageHelper.startPage(2,10).
-                        doSelectPageInfo(new ISelect() {
-                            @Override
-                            public void doSelect() {
-                                brandMapper.selectAll();
-                            }
-                        });
-        System.out.println("总记录数:"+pageInfo.getTotal());
-        System.out.println("总页数:"+pageInfo.getPages());
-        return pageInfo.getList();*/
+
         return brandMapper.selectAll();
+
     }
 
+    /**
+     * 这是多条件或者没条件分页查询
+     * @param brand
+     * @param page
+     * @param rows
+     * @return
+     */
     @Override
     public List<Brand> findByPage(Brand brand, int page, int rows) {
-        return null;
+        PageInfo<Brand> brandList = PageHelper.startPage(page, rows).doSelectPageInfo(new ISelect() {
+            @Override
+            public void doSelect() {
+                brandMapper.findBrandByPages(brand);
+            }
+        });
+        return brandList.getList();
     }
 }
