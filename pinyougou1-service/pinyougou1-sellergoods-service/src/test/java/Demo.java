@@ -25,7 +25,7 @@ public class Demo {
         Brand brand = new Brand();
         brand.setName("联");
 //        List<Brand> byPage = brandService.findByPage(brand, 1, 5);
-        PageResult byPage = brandService.findByPage(brand, 1, 5);
+        PageResult byPage = brandService.findByPage(null,1, 5);
         System.out.println(byPage);
     }
 }

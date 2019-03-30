@@ -17,7 +17,7 @@ public class BrandController {
     @Reference(timeout = 10000)
     private BrandService brandService;
     @GetMapping("/findAll")
-    public PageResult findAll(Brand brand, int pageNum, int pageSize){
+    public PageResult findAll(Brand brand,@RequestParam(defaultValue = "1") int pageNum,@RequestParam(defaultValue = "5") int pageSize){
          try{
              if (StringUtils.isNoneBlank(brand.getName())){
                  brand.setName(new String(brand.getName().getBytes("ISO8859-1"), "UTF-8"));

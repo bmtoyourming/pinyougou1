@@ -61,13 +61,18 @@ public class BrandServiceImpl implements BrandService {
      */
     @Override
     public PageResult findByPage(Brand brand, int page, int rows) {
-        PageInfo<Brand> brandList = PageHelper.startPage(page, rows).doSelectPageInfo(new ISelect() {
-            @Override
-            public void doSelect() {
-                brandMapper.findBrandByPages(brand);
-            }
-        });
-//        return brandList.getList();
-        return new PageResult(brandList.getTotal(),brandList.getList());
+        try {
+            PageInfo<Brand> brandList = PageHelper.startPage(page, rows).doSelectPageInfo(new ISelect() {
+                @Override
+                public void doSelect() {
+                    brandMapper.findBrandByPages(brand);
+                }
+            });
+            return new PageResult(brandList.getTotal(),brandList.getList());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+        //如果不加异常的话,假如请求不加参数的话就会报错
     }
 }

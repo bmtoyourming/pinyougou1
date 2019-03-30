@@ -15,9 +15,8 @@
 	<link rel="stylesheet" href="/plugins/angularjs/pagination.css"/>
 	<script src="/plugins/angularjs/pagination.js"></script>
 	<!-- 分页模块结束 -->
-    
 </head>
-<body class="hold-transition skin-red sidebar-mini" ng-app="brand" ng-controller="getBrand" ng-init="findAllByPage()">
+<body class="hold-transition skin-red sidebar-mini" ng-app="brand" ng-controller="brandController" ng-init="findAll()">
 	<!-- .box-body -->
 	<div class="box-header with-border">
 		<h3 class="box-title">品牌管理</h3>
@@ -69,9 +68,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="entity in dataList">
+					<tr ng-repeat="entity in dataList.rows">
 						<td><input  type="checkbox" ></td>			                              
-						<td>{{entity.id}}</td>
+						<td>{{$index}}</td>
 						<td>{{entity.name}}</td>
 						<td>{{entity.firstChar}}</td>
 						<td class="text-center">                                           
@@ -80,8 +79,6 @@
 					</tr>
 				</tbody>
 			 </table>
-			<!--用于分页-->
-			<tm-pagination conf="paginationConf"/>
 			 <!--数据列表/-->                        
 		</div>
 		<!-- 数据表格 /-->
@@ -123,39 +120,22 @@
 </html>
 <script type="text/javascript">
 	// 定义一个模块
-	var app = angular.module("brand",['pagination']);
-	// 添加控制器
-	app.controller("getBrand",function ($scope,$http) {
-	 	$scope.findAllByPage = function () {
-            currentPage: 1, // 当前页码
-                totalItems: 0,  // 总记录数
-                itemsPerPage: 10, // 每页显示的记录数
-                perPageOptions: [10, 20, 30], // 页码下拉列表框
-        }
+	var app = angular.module("brand",[]);
 
-		$scope.saveOrUpdate = function () {
-			var url = "save";
-			if($scope.entity.id){
-			    //说明那时候点的是修改
-			    url = "update";
-			}
-			$http.post("/brand/"+url,$scope.entity).then(function (resp) {
-				if (resp.data){
-				    $scope.findAll();
-				}else{
-				    alert("添加失败")
-				}
-            })
-        };
-		$scope.show = function (entity) {
-
-			//当点击修改的时候,数据显示当前点击修改的内容
-			//把json字符串转为对象,因为那两个框本身就是用了绑定对象了
-			// $scope.entity = JSON.parse(JSOn.stringify(entity))
-            // 把entity转化成json字符串
-            var jsonStr = JSON.stringify(entity);
-            // 把json字符串转化成json对象
-            $scope.entity = JSON.parse(jsonStr);
+	//定义服务层,专门发起请求的
+	app.service('brandService',function ($http){
+        this.findAll = function (url) {
+			return $http.get(url);
         }
     })
+
+	//定义控制层,专门处理请求数据和响应数据的
+	app.controller('brandController',function ($scope,brandService) {
+		var obj = brandService.findAll("/brand/findAll");
+		obj.then(function (response) {
+		    // alert(angular.toJson(response))
+			$scope.dataList = response.data;
+        });
+    });
+
 </script>
