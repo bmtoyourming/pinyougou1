@@ -8,11 +8,11 @@ app.controller('brandController', function($scope, $controller, baseService){
     $scope.searchEntity = {};
     /** 分页查询(查询条件) */
     $scope.search = function(page, rows){
-        baseService.findByPage("/brand/findByPage", page,
+        baseService.findByPage("/brand/findAll", page,
 			rows, $scope.searchEntity)
             .then(function(response){
                 /** 获取分页查询结果 */
-                $scope.dataList = response.data.rows;
+                $scope.dataList = response.data;
                 /** 更新分页总记录数 */
                 $scope.paginationConf.totalItems = response.data.total;
             });

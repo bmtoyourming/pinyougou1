@@ -1,6 +1,5 @@
 /** 定义基础服务层 */
 app.service('baseService', function($http){
-
     /** 发送get请求(带请求参数或不带请求参数) */
     this.sendGet = function(url, data){
         if (data){
@@ -26,7 +25,7 @@ app.service('baseService', function($http){
     /** 分页查询(带查询条件或不带查询条件) */
     this.findByPage = function(url, page, rows, data){
         /** 定义分页URL */
-        url += '?page='+ page +'&rows=' + rows;
+        url += '?pageNum='+ page +'&pageSize=' + rows;
         if (data && JSON.stringify(data) != "{}"){
             return $http({
                 method : 'get',

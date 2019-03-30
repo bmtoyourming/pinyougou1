@@ -5,7 +5,7 @@ app.controller("baseController", function($scope){
     $scope.paginationConf = {
         currentPage : 1, // 当前页码
         perPageOptions : [10,15,20], // 页码下拉列表框
-        totalItems : 0, // 总记录数
+        totalItems : 100, // 总记录数
         itemsPerPage : 10, // 每页显示记录数
         onChange : function(){ // 当页码发生改变后需要调用的函数
             // 重新加载数据

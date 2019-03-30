@@ -15,8 +15,17 @@
 	<link rel="stylesheet" href="/plugins/angularjs/pagination.css"/>
 	<script src="/plugins/angularjs/pagination.js"></script>
 	<!-- 分页模块结束 -->
+	<!--导入分页模块-->
+	<!--<script src="/js/base.js"></script>-->
+	<script src="/js/base-pagination.js"></script>
+	<!--导入服务层-->
+	<script src="/js/service/baseService.js"></script>
+	<!--导入控制层-->
+	<script src="/js/controller/brandController.js"></script>
+	<script src="/js/controller/baseController.js"></script>
 </head>
-<body class="hold-transition skin-red sidebar-mini" ng-app="brand" ng-controller="brandController" ng-init="findAll()">
+<body class="hold-transition skin-red sidebar-mini"
+	  ng-app="pinyougou1" ng-controller="brandController">
 	<!-- .box-body -->
 	<div class="box-header with-border">
 		<h3 class="box-title">品牌管理</h3>
@@ -40,12 +49,12 @@
 					<!--  查询条件区-->
 					<table>
 						<tr>
-							<td><input class="form-control" placeholder="品牌名称">
+							<td><input class="form-control" placeholder="品牌名称" ng-model="searchEntity.name">
 							</td>
-							<td><input class="form-control" placeholder="首字母">
+							<td><input class="form-control" placeholder="首字母" ng-model="searchEntity.firstChar">
 							</td>
 							<td>
-								<button type="button" class="btn btn-default">
+								<button type="button" class="btn btn-default" ng-click="reload()">
 									<i class="fa fa-trash-o"></i> 查询
 								</button>
 							</td>
@@ -70,7 +79,7 @@
 				<tbody>
 					<tr ng-repeat="entity in dataList.rows">
 						<td><input  type="checkbox" ></td>			                              
-						<td>{{$index}}</td>
+						<td>{{$index+1}}</td>
 						<td>{{entity.name}}</td>
 						<td>{{entity.firstChar}}</td>
 						<td class="text-center">                                           
@@ -79,6 +88,8 @@
 					</tr>
 				</tbody>
 			 </table>
+			<!-- 分页指令 -->
+			<tm-pagination conf="paginationConf"/>
 			 <!--数据列表/-->                        
 		</div>
 		<!-- 数据表格 /-->
@@ -118,9 +129,10 @@
 	</div>
 </body>
 </html>
+<!--
 <script type="text/javascript">
 	// 定义一个模块
-	var app = angular.module("brand",[]);
+	// var app = angular.module("brand",[]);
 
 	//定义服务层,专门发起请求的
 	app.service('brandService',function ($http){
@@ -138,4 +150,4 @@
         });
     });
 
-</script>
+</script>-->
