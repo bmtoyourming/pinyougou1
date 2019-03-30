@@ -10,8 +10,6 @@ import com.pinyougou1.pojo.Brand;
 import com.pinyougou1.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-
-
 import java.io.Serializable;
 import java.util.List;
 @Service(interfaceName="com.pinyougou1.service.BrandService")
