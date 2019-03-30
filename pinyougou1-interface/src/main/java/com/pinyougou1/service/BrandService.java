@@ -4,6 +4,7 @@ import com.pinyougou1.common.pojo.PageResult;
 import com.pinyougou1.pojo.Brand;
 import java.util.List;
 import java.io.Serializable;
+
 /**
  * BrandService 服务接口
  * @date 2019-03-28 18:33:00
@@ -20,7 +21,8 @@ public interface BrandService {
 	/** 根据主键id删除 */
 	void delete(Serializable id);
 
-	/** 批量删除 */
+	/** 批量删除
+	 * @param ids*/
 	void deleteAll(Serializable[] ids);
 
 	/** 根据主键id查询 */

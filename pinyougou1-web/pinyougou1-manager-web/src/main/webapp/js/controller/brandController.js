@@ -17,7 +17,6 @@ app.controller('brandController', function($scope, $controller, baseService){
                 $scope.paginationConf.totalItems = response.data.total;
             });
     };
-
     /** 添加或修改 */
     $scope.saveOrUpdate = function(){
         var url = "save";

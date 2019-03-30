@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.io.Serializable;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,5 +28,10 @@ public class Demo {
 //        List<Brand> byPage = brandService.findByPage(brand, 1, 5);
         PageResult byPage = brandService.findByPage(null,1, 5);
         System.out.println(byPage);
+    }
+    @Test
+    public void test03(){
+        Serializable[] ids = {27};
+        brandService.deleteAll(ids);
     }
 }

@@ -15,4 +15,11 @@
 			and first_char like concat ('%',#{firstChar},'%')
 		</if>
 	</select>
+
+	<delete id="deleteAll">
+		delete from tb_brand where
+	<foreach collection="array" open="id IN (" separator="," close=")" item="lid">
+            #{lid}
+        </foreach>
+	</delete>
 </mapper>

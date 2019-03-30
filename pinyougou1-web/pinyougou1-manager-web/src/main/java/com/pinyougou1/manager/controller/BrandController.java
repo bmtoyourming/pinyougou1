@@ -9,6 +9,7 @@ import com.pinyougou1.service.BrandService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @RestController
@@ -48,4 +49,15 @@ public class BrandController {
         }
         return false;
     }
+    @GetMapping("/delete")
+    public boolean deleteBrand(Long[] ids){
+        try {
+            brandService.deleteAll(ids);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

@@ -4,6 +4,7 @@ import tk.mybatis.mapper.common.Mapper;
 
 import com.pinyougou1.pojo.Brand;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -15,4 +16,6 @@ public interface BrandMapper extends Mapper<Brand>{
 
 
     List<Brand> findBrandByPages(Brand brand);
+
+    void deleteAll(Serializable[] ids);
 }

@@ -37,7 +37,11 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public void deleteAll(Serializable[] ids) {
-
+       try {
+           brandMapper.deleteAll(ids);
+       }catch (Exception e){
+           e.printStackTrace();
+       }
     }
 
     @Override

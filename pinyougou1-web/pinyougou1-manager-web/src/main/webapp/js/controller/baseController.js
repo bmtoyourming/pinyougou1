@@ -12,6 +12,7 @@ app.controller("baseController", function($scope){
             $scope.reload();
         }
     };
+    /** 加载数据方法 */
 
     // 定义重新加载数据方法
     $scope.reload = function(){
