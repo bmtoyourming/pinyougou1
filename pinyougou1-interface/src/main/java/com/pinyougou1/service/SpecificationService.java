@@ -10,6 +10,10 @@ import java.io.Serializable;
  * @version 1.0
  */
 public interface SpecificationService {
-
+    /**
+     * 插入一条数据
+     * @param specification
+     */
+    void save(Specification specification);
 
 }

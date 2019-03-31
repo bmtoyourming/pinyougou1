@@ -49,7 +49,7 @@ public class BrandController {
         }
         return false;
     }
-    @GetMapping("/delete")
+    @PostMapping("/delete")
     public boolean deleteBrand(Long[] ids){
         try {
             brandService.deleteAll(ids);

@@ -6,9 +6,8 @@ import com.pinyougou1.pojo.Specification;
 import com.pinyougou1.service.SpecificationService;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/Specification")
@@ -16,6 +15,15 @@ public class SpecificationController {
     @Reference(timeout = 10000)
     private SpecificationService specificationService;
 
-
+    @PostMapping("/save")
+    public boolean save(@RequestBody Specification specification){
+        try {
+            specificationService.save(specification);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 }

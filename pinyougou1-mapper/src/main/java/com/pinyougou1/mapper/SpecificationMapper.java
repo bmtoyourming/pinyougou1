@@ -14,5 +14,7 @@ import java.util.List;
  */
 public interface SpecificationMapper extends Mapper<Specification>{
 
+    void save(Specification specification);
+
 
 }

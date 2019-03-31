@@ -6,10 +6,7 @@ import com.pinyougou1.pojo.TypeTemplate;
 import com.pinyougou1.service.TypeTemplateService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/typeTemplate")
@@ -29,7 +26,7 @@ public class TypeTemplateController {
         return typeTemplateService.findByPage(typeTemplate,pageNum,pageSize);
     }
     @PostMapping("/save")
-    public boolean save(TypeTemplate typeTemplate){
+    public boolean save(@RequestBody TypeTemplate typeTemplate){
         try {
             typeTemplateService.save(typeTemplate);
             return true;
@@ -40,7 +37,7 @@ public class TypeTemplateController {
 
     }
     @PostMapping("/update")
-    public boolean update(TypeTemplate typeTemplate){
+    public boolean update(@RequestBody TypeTemplate typeTemplate){
         try {
             typeTemplateService.update(typeTemplate);
             return true;
