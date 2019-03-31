@@ -20,12 +20,12 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
     private TypeTemplateMapper typeTemplateMapper;
     @Override
     public void save(TypeTemplate typeTemplate) {
-
+        typeTemplateMapper.insertSelective(typeTemplate);
     }
 
     @Override
     public void update(TypeTemplate typeTemplate) {
-
+        typeTemplateMapper.updateByPrimaryKeySelective(typeTemplate);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
 
     @Override
     public void deleteAll(Serializable[] ids) {
-
+        typeTemplateMapper.deleteAll(ids);
     }
 
     @Override

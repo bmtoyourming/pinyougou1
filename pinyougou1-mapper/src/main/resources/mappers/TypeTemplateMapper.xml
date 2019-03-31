@@ -12,4 +12,11 @@
             and name like concat ('%',#{name},'%')
         </if>
 	</select>
+
+	<delete id="deleteAll">
+	    delete from tb_type_template where
+	    <foreach collection="array" open="id IN (" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+	</delete>
 </mapper>

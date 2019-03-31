@@ -5,6 +5,7 @@ import tk.mybatis.mapper.common.Mapper;
 
 import com.pinyougou1.pojo.TypeTemplate;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -19,4 +20,10 @@ public interface TypeTemplateMapper extends Mapper<TypeTemplate>{
      */
 
     List<TypeTemplate> findAll(TypeTemplate typeTemplate);
+
+    /**
+     * 根据可变id删除数据
+     * @param ids
+     */
+    void deleteAll(Serializable ids);
 }

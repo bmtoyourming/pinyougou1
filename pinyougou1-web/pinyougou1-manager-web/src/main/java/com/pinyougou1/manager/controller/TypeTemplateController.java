@@ -39,4 +39,25 @@ public class TypeTemplateController {
         return false;
 
     }
+    @PostMapping("/update")
+    public boolean update(TypeTemplate typeTemplate){
+        try {
+            typeTemplateService.update(typeTemplate);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    @PostMapping("/delete")
+    public boolean delete(Long[] ids){
+        try {
+            typeTemplateService.deleteAll(ids);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

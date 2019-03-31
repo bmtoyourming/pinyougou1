@@ -21,8 +21,15 @@ public class Demo {
     private TypeTemplateService typeTemplateService;
     @Test
     public void test011(){
-        PageResult byPage = typeTemplateService.findByPage(null, 1, 5);
-        System.out.println(byPage);
+        TypeTemplate typeTemplate = new TypeTemplate();
+
+        typeTemplate.setName("你好");
+        typeTemplate.setSpecIds("123");
+        typeTemplate.setBrandIds("456");
+        typeTemplate.setCustomAttributeItems("789");
+
+
+       typeTemplateService.save(null);
     }
     @Test
     public void test01(){
