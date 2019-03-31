@@ -1,7 +1,9 @@
 import com.pinyougou1.common.pojo.PageResult;
 import com.pinyougou1.pojo.Brand;
+import com.pinyougou1.pojo.ItemCat;
 import com.pinyougou1.pojo.TypeTemplate;
 import com.pinyougou1.service.BrandService;
+import com.pinyougou1.service.ItemCatService;
 import com.pinyougou1.service.TypeTemplateService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +21,15 @@ public class Demo {
     private BrandService brandService;
     @Autowired
     private TypeTemplateService typeTemplateService;
+    @Autowired
+    private ItemCatService itemCatService;
+    @Test
+    public void test012(){
+        List<ItemCat> itemCatById = itemCatService.findItemCatById(0);
+        for (ItemCat itemCat : itemCatById) {
+            System.out.println(itemCat);
+        }
+    }
     @Test
     public void test011(){
         TypeTemplate typeTemplate = new TypeTemplate();
