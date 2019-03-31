@@ -1,5 +1,6 @@
 package com.pinyougou1.service;
 
+import com.pinyougou1.common.pojo.PageResult;
 import com.pinyougou1.pojo.TypeTemplate;
 import java.util.List;
 import java.io.Serializable;
@@ -26,9 +27,9 @@ public interface TypeTemplateService {
 	TypeTemplate findOne(Serializable id);
 
 	/** 查询全部 */
-	List<TypeTemplate> findAll();
+	List<TypeTemplate> findAll(TypeTemplate typeTemplate);
 
 	/** 多条件分页查询 */
-	List<TypeTemplate> findByPage(TypeTemplate typeTemplate, int page, int rows);
+	PageResult findByPage(TypeTemplate typeTemplate, int page, int rows);
 
 }

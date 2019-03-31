@@ -1,6 +1,8 @@
 import com.pinyougou1.common.pojo.PageResult;
 import com.pinyougou1.pojo.Brand;
+import com.pinyougou1.pojo.TypeTemplate;
 import com.pinyougou1.service.BrandService;
+import com.pinyougou1.service.TypeTemplateService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,13 @@ import java.util.List;
 public class Demo {
     @Autowired
     private BrandService brandService;
+    @Autowired
+    private TypeTemplateService typeTemplateService;
+    @Test
+    public void test011(){
+        PageResult byPage = typeTemplateService.findByPage(null, 1, 5);
+        System.out.println(byPage);
+    }
     @Test
     public void test01(){
         System.out.println(brandService);
