@@ -46,7 +46,7 @@ public class TypeTemplateController {
         }
         return false;
     }
-    @PostMapping("/delete")
+    @GetMapping("/delete")
     public boolean delete(Long[] ids){
         try {
             typeTemplateService.deleteAll(ids);

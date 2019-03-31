@@ -8,7 +8,7 @@ app.controller('typeTemplateController', function($scope, $controller, baseServi
     $scope.searchEntity = {};
     /** 分页查询(查询条件) */
     $scope.search = function(page, rows){
-        baseService.findByPage("/typeTemplate/findByPage", page,
+        baseService.findByPage("/typeTemplate/findAll", page,
 			rows, $scope.searchEntity)
             .then(function(response){
                 /** 获取分页查询结果 */
