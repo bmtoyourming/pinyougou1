@@ -7,4 +7,12 @@
 	<insert id="save" parameterType="com.pinyougou1.pojo.Specification">
 		insert into tb_specification values (null,#{specName})
   	</insert>
+
+	<select id="findAll"
+			resultType="com.pinyougou1.pojo.Specification">
+	   select * from tb_specification where 1=1
+	   <if test="specName != null and specName != ''">
+		   and spec_name like concat ('%',#{specName},'%')
+        </if>
+	</select>
 </mapper>

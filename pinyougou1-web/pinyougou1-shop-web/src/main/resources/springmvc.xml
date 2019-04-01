@@ -13,7 +13,7 @@
        http://code.alibabatech.com/schema/dubbo
        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-    <!--<import resource="classpath:applicationContext*.xml"/>-->
+    <import resource="classpath:applicationContext*.xml"/>
     <!-- 开启MVC注解驱动 -->
     <mvc:annotation-driven>
         <!-- 配置消息转换 -->

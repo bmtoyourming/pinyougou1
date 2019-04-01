@@ -1,4 +1,6 @@
-import com.pinyougou1.common.pojo.PageResult;
+
+import com.pinyougou1.pojo.SpecificationOption;
+import java.util.ArrayList;import com.pinyougou1.common.pojo.PageResult;
 import com.pinyougou1.pojo.Brand;
 import com.pinyougou1.pojo.ItemCat;
 import com.pinyougou1.pojo.Specification;
@@ -30,7 +32,12 @@ public class Demo {
     @Test
     public void test013(){
         Specification specification = new Specification();
-        specificationService.save(specification);
+
+        specification.setSpecName("码");
+        PageResult all = specificationService.findAll(specification, 1, 5);
+        System.out.println(all);
+
+
     }
     @Test
     public void test012(){

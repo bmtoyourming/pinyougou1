@@ -16,5 +16,6 @@ public interface SpecificationMapper extends Mapper<Specification>{
 
     void save(Specification specification);
 
+    List<Specification> findAll(Specification specification);
 
 }

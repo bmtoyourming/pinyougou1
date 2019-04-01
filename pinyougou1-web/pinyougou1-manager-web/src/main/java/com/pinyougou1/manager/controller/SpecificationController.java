@@ -25,5 +25,9 @@ public class SpecificationController {
         }
         return false;
     }
+    @GetMapping("/findAll")
+    public PageResult findAll(Specification specification,int pageNum,int pageSize){
+        return specificationService.findAll(specification,pageNum,pageSize);
+    }
 
 }

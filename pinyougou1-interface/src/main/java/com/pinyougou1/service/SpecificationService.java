@@ -16,4 +16,6 @@ public interface SpecificationService {
      */
     void save(Specification specification);
 
+    PageResult findAll(Specification specification,int pageNum,int pageSize);
+
 }
