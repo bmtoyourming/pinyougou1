@@ -14,7 +14,7 @@
             location="classpath:props/db.properties"/>
 
     <!-- 导入数据访问配置文件 -->
-    <import resource="classpath:applicationContext-mapper.xml"/>
+    <import resource="classpath*:applicationContext-mapper.xml"/>
 
     <!-- ############## 配置dubbo服务提供者 ############## -->
     <!-- 配置当前应用的名称 -->
